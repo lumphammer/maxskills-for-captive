@@ -2,7 +2,7 @@
 
 In [*Captive*](https://en.wikipedia.org/wiki/Captive_(video_game)), the 1990 CRPG developed by Antony Crowther and published by Mindscape, a droid's name determines its initial Dexterity, Vitality and Wisdom stats. This tool generates names where all three start at their maximum value of 15. It also lets you type any name to check what stats it would produce.
 
-**[Open the app](https://nmdc.github.io/maxskills/)** — single HTML file, no build step, no dependencies.
+**[Open the app](https://maxskills.lumphammer.net/)** — single HTML file, no build step, no dependencies.
 
 ## How it works
 
