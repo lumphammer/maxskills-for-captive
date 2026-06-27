@@ -22,6 +22,8 @@
   }
   h1{font-size:18px; letter-spacing:2px; margin:0 0 2px; color:var(--green); text-transform:uppercase}
   .sub{font-size:12px; color:var(--green-dim); margin:0 0 22px; line-height:1.5}
+  .sub a{color:var(--green); text-decoration:underline; text-underline-offset:2px}
+  .sub a:hover{color:var(--amber)}
   .name{
     font-size:clamp(28px,9vw,52px); font-weight:700; letter-spacing:4px; text-align:center;
     color:var(--amber); padding:22px 10px; margin:0 0 18px; border:1px dashed var(--edge);
@@ -49,8 +51,10 @@
   <main class="crt">
     <h1>Captive · Max Skills</h1>
     <p class="sub">
-      In <em>Captive</em>, a droid's name fixes its initial Dexterity, Vitality
-      and Wisdom. This generates names where all three start at their maximum of&nbsp;15.
+      In <a href="https://en.wikipedia.org/wiki/Captive_(video_game)" target="_blank" rel="noopener"><em>Captive</em></a>,
+      the 1990 CRPG developed by Antony Crowther and published by Mindscape,
+      a droid's name fixes its initial Dexterity, Vitality and Wisdom. This
+      generates names where all three start at their maximum of&nbsp;15.
     </p>
 
     <div id="name" class="name empty" title="Click to copy">— press generate —</div>
@@ -63,7 +67,7 @@
 
     <button id="gen">Generate Name</button>
     <p class="meta" id="meta">
-      Port of MaxSkills.exe by Pierre “Lyverbe” Fournier (2008), GPLv2.<br>
+      Port of <a href="https://captive.atari.org/Miscellaneous/Tools/Tools.php" target="_blank" rel="noopener">MaxSkills.exe</a> by Pierre “Lyverbe” Fournier (2008), GPLv2.<br>
       Logic verified against the original C++ source.
     </p>
   </main>
