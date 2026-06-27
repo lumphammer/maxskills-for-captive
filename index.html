@@ -43,6 +43,16 @@
   }
   button:hover{filter:brightness(1.12)} button:active{transform:translateY(1px)}
   button:disabled{filter:grayscale(.6) brightness(.7); cursor:wait}
+  .divider{border:none; border-top:1px solid var(--edge); margin:24px 0}
+  .lookup-input{
+    width:100%; padding:12px 14px; font:inherit; font-size:20px; font-weight:700;
+    letter-spacing:3px; text-transform:uppercase; background:#0a120a;
+    border:1px solid var(--edge); border-radius:8px; color:var(--amber);
+    outline:none; margin-bottom:14px;
+  }
+  .lookup-input::placeholder{color:var(--green-dim); font-size:14px; letter-spacing:1px; font-weight:400}
+  .lookup-input:focus{border-color:var(--green-dim)}
+  .stat.max .v{color:var(--amber); text-shadow:0 0 10px rgba(255,207,77,.4)}
   .meta{margin:14px 0 0; font-size:11px; color:var(--green-dim); text-align:center; line-height:1.6}
   .meta a{color:var(--green-dim)}
   .copied{color:var(--amber)}
@@ -67,6 +77,17 @@
     </div>
 
     <button id="gen">Generate Name</button>
+
+    <hr class="divider">
+
+    <input id="lookup" class="lookup-input" type="text" maxlength="20"
+           placeholder="Type a name to check its stats…" autocomplete="off" spellcheck="false">
+    <div class="stats">
+      <div class="stat" id="ls-dex"><div class="k">Dexterity</div><div class="v" id="ldex">–</div></div>
+      <div class="stat" id="ls-vit"><div class="k">Vitality</div><div class="v" id="lvit">–</div></div>
+      <div class="stat" id="ls-wis"><div class="k">Wisdom</div><div class="v" id="lwis">–</div></div>
+    </div>
+
     <p class="meta" id="meta">
       Port of <a href="https://captive.atari.org/Miscellaneous/Tools/Tools.php" target="_blank" rel="noopener">MaxSkills.exe</a> by Pierre “Lyverbe” Fournier (2008), GPLv2.<br>
       Logic verified against the original C++ source.
@@ -149,6 +170,28 @@ function render() {
 }
 
 genBtn.addEventListener("click", render);
+
+// --- Lookup section ----------------------------------------------------------
+const lookupEl = $("lookup");
+
+function setLookupStat(statId, boxId, val) {
+  $("l" + statId).textContent = val === null ? "–" : val;
+  $(boxId).classList.toggle("max", val === 15);
+}
+
+lookupEl.addEventListener("input", () => {
+  const name = lookupEl.value.toUpperCase();
+  if (!name) {
+    setLookupStat("dex", "ls-dex", null);
+    setLookupStat("vit", "ls-vit", null);
+    setLookupStat("wis", "ls-wis", null);
+    return;
+  }
+  const s = getSkills(name);
+  setLookupStat("dex", "ls-dex", s.dex);
+  setLookupStat("vit", "ls-vit", s.vit);
+  setLookupStat("wis", "ls-wis", s.wis);
+});
 
 nameEl.addEventListener("click", () => {
   if (nameEl.classList.contains("empty")) return;
